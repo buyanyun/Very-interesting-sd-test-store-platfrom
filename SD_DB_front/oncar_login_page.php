@@ -34,9 +34,9 @@
   <body id="page-top">
 
   <div class="container">
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
     <div id="logbox">
-      <form id="signup" method="POST" action="login_page.php">
+      <form id="signup" method="POST" action="oncar_login_page.php">
         <h1>create an account</h1>
         <input name="name" type="text" placeholder="What's your username?" pattern="^[\w]{3,16}$" autofocus="autofocus" required="required" class="input pass"/>
         <input name="password" type="text" placeholder="Choose a password" required="required" class="input pass"/>
@@ -45,13 +45,13 @@
         <input type="submit" value="Sign me up!" class="inputButton" name="addaccount"/>
       </form>
     </div>
-   </div>
+   </div> -->
     <!--col-md-6-->
 
    <div class="col-md-6">
     <div id="logbox">
-      <form id="signin" method="POST" action="login_page.php">
-        <h1>account login</h1>
+      <form id="signin" method="POST" action="oncar_login_page.php">
+        <h1>Test Driver login</h1>
         <input name="accountNo" type="text" placeholder="enter your account Number" class="input pass"/>
         <input name="password" type="text" placeholder="enter your password" required="required" class="input pass"/>
         <input type="submit" value="Sign me in!" class="inputButton" name="login"/>
@@ -123,7 +123,7 @@ if ($db_conn) {
                                     WHERE Developer.accountNo = {$_POST['accountNo']}
                                     AND Developer.password = {$_POST['password']}");
     if (countRows($findAccount) != 0) {
-     header("location: add_car_device_software.php");
+     header("location: test_management.php");
 
     }
   }
@@ -204,6 +204,6 @@ function getNewID()
 function popWindow($message)
 {
     echo '<script language="javascript">alert("' . "{$message}" . '");</script>';
-    header("Location:login_page.php");
+    header("Location:oncar_login_page.php");
 }
 ?>

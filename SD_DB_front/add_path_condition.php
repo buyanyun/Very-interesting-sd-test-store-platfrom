@@ -134,6 +134,37 @@ function printWhole($tableName)
     echo "</table>";
 }
 
+function printWhole2()
+{
+    $result = executePlainSQL("SELECT Path.*, PathCondition.roadtype, PathCondition.weather, PathCondition.climate, PathCondition.dayornight FROM Path, PathCondition WHERE Path.pathcondID = PathCondition.pathcondID");
+    OCICommit($db_conn);
+
+    // echo "<br>Table [{$tableName}]:<br>";
+
+    // table head
+    $ncols = oci_num_fields($result);
+    echo '<table class="table table-striped"><thead><tr>';
+    for ($i = 1; $i <= $ncols; $i++) {
+        $column_name = oci_field_name($result, $i);
+        echo "<th>{$column_name}</th>";
+    }
+    echo "</tr></thead>";
+
+    echo "<tbody>";
+    // table data
+    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+        echo "<tr>";
+        // checkbox
+        for ($i = 0; $i < $ncols; $i++) {
+            echo "<td>{$row[$i]}</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</tbody>";
+
+    echo "</table>";
+}
+
 function getNewID($name)
 {
     if ($name == "path") {
@@ -277,7 +308,7 @@ function getNewID($name)
                   if($db_conn){
                     $tableName = "Path";
                     echo "<h1>TESTING</h1>";
-                    printWhole($tableName);
+                    printWhole2();
                   }
                   ?>
               </div>
